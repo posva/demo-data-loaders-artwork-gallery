@@ -35,9 +35,13 @@ const aspectRatio = computed(() => {
       </div>
 
       <figcaption>
-        <a :href="`#${artwork.title}_${artwork.id}`">
-          {{ artwork.title }}
-        </a>
+        <span class="font-serif">
+          {{ artwork.title }}, {{ artwork.date_display }}
+        </span>
+        <template v-if="artwork.artist_titles.length > 0">
+          <br />
+          <span>{{ artwork.artist_titles.join(', ') }}</span>
+        </template>
       </figcaption>
     </figure>
   </RouterLink>

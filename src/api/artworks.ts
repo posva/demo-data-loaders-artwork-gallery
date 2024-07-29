@@ -72,7 +72,7 @@ export interface ArtworkColor {
 
 // list of fields to fetch from the API
 const FIELDS =
-  'id,title,artist_display,thumbnail,image_id,date_display,description,place_of_origin,dimensions,short_description,color,term_titles'
+  'id,title,artist_display,artist_titles,thumbnail,image_id,date_display,description,place_of_origin,dimensions,short_description,color,term_titles'
 
 export interface Artwork {
   id: number
@@ -82,6 +82,7 @@ export interface Artwork {
   thumbnail?: ArtworkThumbnail
   date_display: string
   artist_display: string
+  artist_titles: string[]
   place_of_origin: string
   description: string
   short_description: string | null
@@ -110,7 +111,7 @@ export interface ArtworkSearchResult
  * Get a list of artworks.
  * @param param0 - The pagination parameters
  */
-export async function getArtworksList({
+export async function getArtworkList({
   page = 1,
   limit = 25,
 }: PaginationParams = {}) {
