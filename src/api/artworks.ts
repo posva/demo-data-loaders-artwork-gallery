@@ -74,12 +74,12 @@ export interface ArtworkColor {
 const FIELDS =
   'id,title,artist_display,artist_titles,thumbnail,image_id,date_display,description,place_of_origin,dimensions,short_description,color,term_titles'
 
-export interface Artwork {
+export interface ArtworkCardInfo {
   id: number
   title: string
   image_id: string | null
   image_url?: string | null
-  thumbnail?: ArtworkThumbnail
+  thumbnail: ArtworkThumbnail | null
   date_display: string
   artist_display: string
   artist_titles: string[]
@@ -98,14 +98,7 @@ export interface ArtworkSearchThumbnail {
   height: number
 }
 
-const SEARCH_FIELDS = 'id,title,thumbnail,image_id'
-export interface ArtworkSearchResult
-  extends Pick<
-    Artwork,
-    'id' | 'thumbnail' | 'image_id' | 'image_url' | 'title'
-  > {
-  _score: number
-}
+const SEARCH_FIELDS = FIELDS
 
 /**
  * Get a list of artworks.
@@ -116,13 +109,16 @@ export async function getArtworkList({
   limit = 25,
 }: PaginationParams = {}) {
   await simulateNetworkIssues()
-  const response = await artworks.get<APIResponsePaginated<Artwork[]>>('/', {
-    query: {
-      page,
-      limit,
-      fields: FIELDS,
+  const response = await artworks.get<APIResponsePaginated<ArtworkCardInfo[]>>(
+    '/',
+    {
+      query: {
+        page,
+        limit,
+        fields: FIELDS,
+      },
     },
-  })
+  )
   return {
     ...response,
     data: response.data.map((artwork) => ({
@@ -138,14 +134,28 @@ export async function getArtworkList({
   }
 }
 
+const ARTWORK_DETAILS_FIELDS = `${FIELDS},copyright_notice,artist_ids,medium_display,inscriptions,credit_line,main_reference_number,publication_history,provenance_text,exhibition_history,style_ids`
+
+export interface ArtworkDetails extends ArtworkCardInfo {
+  copyright_notice: string | null
+  artist_ids: number[]
+  medium_display: string
+  inscriptions: string | null
+  credit_line: string | null
+  main_reference_number: string
+  publication_history: string | null
+  provenance_text: string | null
+  exhibition_history: string | null
+  style_ids: string[]
+}
+
 export async function getArtwork(id: number | string) {
   await simulateNetworkIssues()
-  const { data: artwork, config } = await artworks.get<APIResponse<Artwork>>(
-    id,
-    {
-      query: { fields: FIELDS },
-    },
-  )
+  const { data: artwork, config } = await artworks.get<
+    APIResponse<ArtworkDetails>
+  >(id, {
+    query: { fields: ARTWORK_DETAILS_FIELDS },
+  })
   return {
     ...artwork,
     image_url:
@@ -155,13 +165,15 @@ export async function getArtwork(id: number | string) {
         artwork.image_id,
         artwork.thumbnail?.width,
       ),
+    publication_history: artwork.publication_history?.split('\n\n') ?? [],
+    exhibition_history: artwork.exhibition_history?.split('\n\n') ?? [],
   }
 }
 
 export async function getArtworkImagesURL(artworksId: number[]) {
   await simulateNetworkIssues()
   const response = await artworks.get<
-    APIResponse<Pick<Artwork, 'image_id' | 'id'>[]>
+    APIResponse<Pick<ArtworkCardInfo, 'image_id' | 'id'>[]>
   >('/', {
     query: {
       ids: artworksId.join(','),
@@ -176,18 +188,30 @@ export async function getArtworkImagesURL(artworksId: number[]) {
   }))
 }
 
-export async function searchArtworks(
-  query: string | LocationQueryValueRaw,
-  { page = 1, limit = 5 }: PaginationParams = {},
-) {
+export interface SearchParams extends PaginationParams {
+  /**
+   * Search based search
+   */
+  q?: string
+  /**
+   * Query based search (Elasicsearch query)
+   */
+  query?: unknown
+}
+
+export async function searchArtworks(query: SearchParams = {}) {
   await simulateNetworkIssues()
   // NOTE: the API seems to work without a query
   // if (typeof query !== 'string' || !query) return Promise.resolve({ data: [] })
-  const response = await artworks.get<
-    APIResponsePaginated<ArtworkSearchResult[]>
-  >('/search', {
-    query: { q: query, page, limit, fields: SEARCH_FIELDS },
-  })
+  const response = await artworks.post<APIResponsePaginated<ArtworkCardInfo[]>>(
+    '/search',
+    {
+      page: 1,
+      limit: 10,
+      fields: SEARCH_FIELDS,
+      ...query,
+    },
+  )
   return {
     ...response,
     data: response.data.map((artwork) => ({

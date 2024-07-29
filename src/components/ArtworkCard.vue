@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { Artwork } from '@/api/artworks'
+import type { ArtworkCardInfo } from '@/api/artworks'
 import { computed } from 'vue'
 
 const props = defineProps<{
-  artwork: Artwork
+  artwork: ArtworkCardInfo
 }>()
 
 const aspectRatio = computed(() => {
