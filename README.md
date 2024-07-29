@@ -2,7 +2,14 @@
 
 ## Todo List
 
--
+- [ ] Artwork List
+  - [x] Main Listn
+  - [ ] Pagination
+  - [ ] Search
+- [x] Artwork Detail
+- [x] Related Artwork
+- [ ] Improve HMR
+  - [ ] Changing the fetching layer is not being reflected (old function runs)
 
 ## Project Setup
 

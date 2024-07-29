@@ -19,9 +19,10 @@ export const useArtworkRelatedArtworks = defineColadaLoader(
         query: {
           term: {
             style_id: artwork.style_ids[0],
+            // TODO: exclude itself
           },
         },
-        limit: 12,
+        limit: 13,
       })
       return {
         ...relatedArtworks,
