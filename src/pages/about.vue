@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineColadaLoader } from 'unplugin-vue-router/data-loaders/pinia-colada'
 
-export const useTestData = defineColadaLoader('/', {
+export const useTestData = defineColadaLoader({
   async query() {
     return { message: 'Hello World' }
   },
