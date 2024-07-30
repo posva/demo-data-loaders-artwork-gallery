@@ -25,20 +25,20 @@ const { data: relatedArtwork, status: relatedArtworkStatus } =
       />
     </div>
     <div class="flex justify-between space-x-2">
-      <span>{{
-        artwork.copyright_notice ?? 'CC0 Public Domain Designation'
+      <span v-if="artwork.is_public_domain">CC0 Public Domain Designation</span>
+      <span v-else-if="artwork.copyright_notice">{{
+        artwork.copyright_notice
       }}</span>
+      <div class="flex-grow"></div>
       <div>
         <button class="bg-slate-800/35">Expand</button>
       </div>
     </div>
   </header>
 
-  <hr />
-
   <div>
-    <div class="flex flex-col mx-auto space-y-6 prose">
-      <span class="font-serif text-4xl" aria-hidden="true">{{
+    <div class="flex flex-col pt-6 mx-auto prose">
+      <span class="mt-6 font-serif text-4xl" aria-hidden="true">{{
         artwork.title
       }}</span>
 

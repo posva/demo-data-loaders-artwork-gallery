@@ -18,6 +18,7 @@ export const useArtworkRelatedArtworks = defineColadaLoader(
       const relatedArtworks = await searchArtworks({
         query: {
           term: {
+            // TODO: might be undefined
             style_id: artwork.style_ids[0],
             // TODO: exclude itself
           },

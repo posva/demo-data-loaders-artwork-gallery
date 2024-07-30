@@ -134,7 +134,7 @@ export async function getArtworkList({
   }
 }
 
-const ARTWORK_DETAILS_FIELDS = `${FIELDS},copyright_notice,artist_ids,medium_display,inscriptions,credit_line,main_reference_number,publication_history,provenance_text,exhibition_history,style_ids`
+const ARTWORK_DETAILS_FIELDS = `${FIELDS},copyright_notice,artist_ids,medium_display,inscriptions,credit_line,main_reference_number,publication_history,provenance_text,exhibition_history,style_ids,is_public_domain`
 
 export interface ArtworkDetails extends ArtworkCardInfo {
   copyright_notice: string | null
@@ -147,6 +147,7 @@ export interface ArtworkDetails extends ArtworkCardInfo {
   provenance_text: string | null
   exhibition_history: string | null
   style_ids: string[]
+  is_public_domain: boolean
 }
 
 export async function getArtwork(id: number | string) {
