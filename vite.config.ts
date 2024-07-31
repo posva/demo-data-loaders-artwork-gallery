@@ -11,7 +11,7 @@ export default defineConfig({
   plugins: [
     //
     VueRouter({
-      dts: 'src/router.d.ts',
+      dts: 'src/typed-router.d.ts',
     }),
     Vue(),
     VueComponents({
