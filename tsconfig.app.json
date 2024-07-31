@@ -3,6 +3,7 @@
   "include": [
     "env.d.ts",
     "typed-router.d.ts",
+    "components.d.ts",
     "src/**/*",
     "src/**/*.vue"
   ],
