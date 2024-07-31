@@ -4,7 +4,7 @@ const ok = someFn()
 
 <template>
   <header>
-    <p>{{ ok }} | {{ someFn() }}</p>
+    <p v-if="false">{{ ok }} | {{ someFn() }}</p>
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
