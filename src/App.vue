@@ -1,7 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const ok = someFn()
+</script>
 
 <template>
   <header>
+    <p>{{ ok }} | {{ someFn() }}</p>
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>

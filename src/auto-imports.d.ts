@@ -7,3 +7,17 @@ export {}
 declare global {
   const someFn: typeof import('./utils/index')['someFn']
 }
+// for vue template auto import
+import { UnwrapRef } from 'vue'
+declare module 'vue' {
+  interface GlobalComponents {}
+  interface ComponentCustomProperties {
+    readonly someFn: UnwrapRef<typeof import('./utils/index')['someFn']>
+  }
+}
+declare module '@vue/runtime-core' {
+  interface GlobalComponents {}
+  interface ComponentCustomProperties {
+    readonly someFn: UnwrapRef<typeof import('./utils/index')['someFn']>
+  }
+}
