@@ -1,9 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": [
-    "env.d.ts",
-    "typed-router.d.ts",
-    "components.d.ts",
     "src/**/*",
     "src/**/*.vue"
   ],

@@ -10,9 +10,13 @@ import VueComponents from 'unplugin-vue-components/vite'
 export default defineConfig({
   plugins: [
     //
-    VueRouter(),
+    VueRouter({
+      dts: 'src/router.d.ts',
+    }),
     Vue(),
-    VueComponents({}),
+    VueComponents({
+      dts: 'src/components.d.ts',
+    }),
     VueDevTools(),
   ],
   resolve: {

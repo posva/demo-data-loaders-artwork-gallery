@@ -7,8 +7,6 @@ export { useArtworkDetails, useArtworkRelatedArtworks }
 </script>
 
 <script lang="ts" setup>
-import ArtworkCard from '@/components/ArtworkCard.vue'
-
 const { data: artwork } = useArtworkDetails()
 const { data: relatedArtwork, status: relatedArtworkStatus } =
   useArtworkRelatedArtworks()

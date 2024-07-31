@@ -1,5 +1,4 @@
 <script lang="ts">
-import ArtworkCard from '@/components/ArtworkCard.vue'
 import { useArtworkList } from '@/loaders/artwork-list'
 export { useArtworkList }
 </script>
