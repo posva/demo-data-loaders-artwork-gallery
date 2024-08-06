@@ -15,14 +15,14 @@
     "@tailwindcss/typography": "^0.5.13",
     "@vueuse/core": "^10.11.0",
     "mande": "^2.0.9",
-    "pinia": "^2.1.7",
+    "pinia": "^2.2.1",
     "vue": "^3.4.35",
-    "vue-router": "^4.4.1"
+    "vue-router": "^4.4.2"
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.4",
     "@types/node": "^22.0.0",
-    "@vitejs/plugin-vue": "^5.0.5",
+    "@vitejs/plugin-vue": "^5.1.2",
     "@vue/tsconfig": "^0.5.1",
     "autoprefixer": "^10.4.19",
     "npm-run-all2": "^6.2.0",

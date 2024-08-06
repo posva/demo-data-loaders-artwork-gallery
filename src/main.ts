@@ -2,12 +2,11 @@ import './assets/main.css'
 import './assets/masonry.css'
 
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-
-import App from './App.vue'
 import { router } from './router'
+import { createPinia } from 'pinia'
 import { DataLoaderPlugin } from 'unplugin-vue-router/data-loaders'
 import { PiniaColada } from '@pinia/colada'
+import App from './App.vue'
 
 const app = createApp(App)
 
