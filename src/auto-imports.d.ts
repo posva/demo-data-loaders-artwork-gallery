@@ -6,6 +6,8 @@
 export {}
 declare global {
   const defineColadaLoader: typeof import('unplugin-vue-router/data-loaders/pinia-colada')['defineColadaLoader']
+  const isLoadingData: typeof import('./composables/loading-data')['isLoadingData']
+  const isNavigating: typeof import('./composables/loading-data')['isNavigating']
   const someFn: typeof import('./utils/index')['someFn']
   const useArtworkDetails: typeof import('./loaders/artwork-details')['useArtworkDetails']
   const useArtworkList: typeof import('./loaders/artwork-list')['useArtworkList']
@@ -18,6 +20,7 @@ declare module 'vue' {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
     readonly defineColadaLoader: UnwrapRef<typeof import('unplugin-vue-router/data-loaders/pinia-colada')['defineColadaLoader']>
+    readonly isNavigating: UnwrapRef<typeof import('./composables/loading-data')['isNavigating']>
     readonly someFn: UnwrapRef<typeof import('./utils/index')['someFn']>
     readonly useArtworkDetails: UnwrapRef<typeof import('./loaders/artwork-details')['useArtworkDetails']>
     readonly useArtworkList: UnwrapRef<typeof import('./loaders/artwork-list')['useArtworkList']>
@@ -29,6 +32,7 @@ declare module '@vue/runtime-core' {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
     readonly defineColadaLoader: UnwrapRef<typeof import('unplugin-vue-router/data-loaders/pinia-colada')['defineColadaLoader']>
+    readonly isNavigating: UnwrapRef<typeof import('./composables/loading-data')['isNavigating']>
     readonly someFn: UnwrapRef<typeof import('./utils/index')['someFn']>
     readonly useArtworkDetails: UnwrapRef<typeof import('./loaders/artwork-details')['useArtworkDetails']>
     readonly useArtworkList: UnwrapRef<typeof import('./loaders/artwork-list')['useArtworkList']>

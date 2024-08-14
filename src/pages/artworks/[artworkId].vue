@@ -142,41 +142,62 @@ const { data: relatedArtwork, isLoading: isLoadingRelatedArtworks } =
   <h2 class="sr-only">Extended information about this artwork</h2>
 
   <div class="mx-auto prose">
-    <template v-if="artwork.publication_history.length > 0">
-      <h3 class="uppercase">Publication History</h3>
-      <ul>
+    <div
+      class="collapse collapse-plus"
+      v-if="artwork.publication_history.length > 0"
+    >
+      <input type="checkbox" />
+      <h3 class="px-0 m-0 uppercase collapse-title">Publication History</h3>
+      <ul class="collapse-content">
         <li v-for="entry in artwork.publication_history" v-html="entry"></li>
       </ul>
-    </template>
+    </div>
 
-    <template v-if="artwork.exhibition_history.length > 0">
-      <h3 class="uppercase">Exhibition History</h3>
-      <ul>
+    <div
+      class="collapse collapse-plus"
+      v-if="artwork.exhibition_history.length > 0"
+    >
+      <input type="checkbox" />
+      <h3 class="px-0 m-0 uppercase collapse-title">Exhibition History</h3>
+      <ul class="collapse-content">
         <li v-for="entry in artwork.exhibition_history" v-html="entry"></li>
       </ul>
-    </template>
-
-    <h3 class="uppercase">Provenance</h3>
-    <p>{{ artwork.provenance_text }}</p>
-  </div>
-
-  <h2>Explore Further</h2>
-
-  <h3 class="sr-only">Related artworks</h3>
-  <div>
-    <div v-if="isLoadingRelatedArtworks">Loading...</div>
-
-    <div class="masonry" v-else-if="relatedArtwork">
-      <ArtworkCard
-        v-for="artwork in relatedArtwork.data"
-        :key="artwork.id"
-        :artwork="artwork"
-      />
     </div>
-    <div v-else>No related artwork found.</div>
+
+    <div class="collapse collapse-plus" v-if="artwork.provenance_text">
+      <input type="checkbox" />
+      <h3 class="px-0 m-0 uppercase collapse-title">Provenance</h3>
+      <p class="collapse-content">
+        {{ artwork.provenance_text }}
+      </p>
+    </div>
   </div>
 
-  <pre>{{ artwork }}</pre>
+  <div class="mx-auto prose max-w-screen-2xl">
+    <h2 class="uppercase">Explore Further</h2>
+
+    <h3 class="sr-only">Related artworks</h3>
+
+    <div>
+      <div
+        class="flex justify-center"
+        v-if="!isNavigating && isLoadingRelatedArtworks"
+      >
+        <div class="m-12 loading loading-spinner loading-lg"></div>
+      </div>
+
+      <div class="masonry" v-else-if="relatedArtwork">
+        <ArtworkCard
+          v-for="artwork in relatedArtwork.data"
+          :key="artwork.id"
+          :artwork="artwork"
+        />
+      </div>
+      <div v-else>
+        <p>No Related artwork found.</p>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
