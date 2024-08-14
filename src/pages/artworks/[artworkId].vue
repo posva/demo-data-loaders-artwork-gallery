@@ -8,7 +8,7 @@ export { useArtworkDetails, useArtworkRelatedArtworks }
 
 <script lang="ts" setup>
 const { data: artwork } = useArtworkDetails()
-const { data: relatedArtwork, status: relatedArtworkStatus } =
+const { data: relatedArtwork, isLoading: isLoadingRelatedArtworks } =
   useArtworkRelatedArtworks()
 </script>
 
@@ -164,7 +164,8 @@ const { data: relatedArtwork, status: relatedArtworkStatus } =
 
   <h3 class="sr-only">Related artworks</h3>
   <div>
-    <div v-if="relatedArtworkStatus === 'loading'">Loading...</div>
+    <div v-if="isLoadingRelatedArtworks">Loading...</div>
+
     <div class="masonry" v-else-if="relatedArtwork">
       <ArtworkCard
         v-for="artwork in relatedArtwork.data"

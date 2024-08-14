@@ -1,8 +1,3 @@
-<script lang="ts">
-import { useArtworkList } from '@/loaders/artwork-list'
-export { useArtworkList }
-</script>
-
 <script setup lang="ts">
 const { data: artworkList } = useArtworkList()
 </script>

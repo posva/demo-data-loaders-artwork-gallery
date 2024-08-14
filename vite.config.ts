@@ -13,14 +13,22 @@ export default defineConfig({
     //
     VueRouter({
       dts: 'src/typed-router.d.ts',
+      experimental: { autoExportsDataLoaders: true },
     }),
     Vue(),
     VueComponents({
       dts: 'src/components.d.ts',
+      dirs: ['src/components'],
     }),
     AutoImports({
       dts: 'src/auto-imports.d.ts',
-      dirs: ['src/utils'],
+      imports: [
+        {
+          from: 'unplugin-vue-router/data-loaders/pinia-colada',
+          imports: ['defineColadaLoader'],
+        },
+      ],
+      dirs: ['src/utils', 'src/loaders', 'src/composables', 'src/stores'],
       vueTemplate: true,
     }),
     VueDevTools(),

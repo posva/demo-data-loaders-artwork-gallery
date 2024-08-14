@@ -1,7 +1,7 @@
 import { getArtwork, searchArtworks } from '@/api/artworks'
-import { defineColadaLoader } from 'unplugin-vue-router/data-loaders/pinia-colada'
 
 export const useArtworkDetails = defineColadaLoader('/artworks/[artworkId]', {
+  staleTime: 1000 * 60 * 60, // 1 hour
   key: (to) => ['artwork-details', to.params.artworkId],
   async query(to) {
     return getArtwork(to.params.artworkId)
@@ -11,6 +11,7 @@ export const useArtworkDetails = defineColadaLoader('/artworks/[artworkId]', {
 export const useArtworkRelatedArtworks = defineColadaLoader(
   '/artworks/[artworkId]',
   {
+    staleTime: 1000 * 60 * 60, // 1 hour
     lazy: true,
     key: (to) => ['artwork-related-artworks', to.params.artworkId],
     async query(to) {
