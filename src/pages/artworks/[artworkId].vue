@@ -14,15 +14,24 @@ const { data: relatedArtwork, isLoading: isLoadingRelatedArtworks } =
 
 <template>
   <h1 class="sr-only">{{ artwork.title }}</h1>
-  <header v-if="artwork.image_url" class="px-6 pb-4 space-y-2 bg-gray-100">
-    <div class="py-12">
-      <img
-        :src="artwork.image_url"
-        :alt="artwork.thumbnail?.alt_text"
-        class="block max-w-full mx-auto w-screen-lg"
-      />
+  <header v-if="artwork.image_url" class="px-6 pb-10 space-y-2 bg-gray-100">
+    <!-- TODO: responsive size -->
+    <div
+      class="h-[calc(100vh-180px)] max-h-[860px] min-h-[720px] flex justify-center pt-12 pb-14"
+    >
+      <div
+        class="w-full h-full max-w-[843px] max-h-[843px] m-auto flex justify-center"
+      >
+        <img
+          :key="artwork.image_url"
+          :src="artwork.image_url"
+          :alt="artwork.thumbnail?.alt_text"
+          class="object-contain"
+        />
+      </div>
     </div>
-    <div class="flex justify-between space-x-2">
+
+    <div class="flex justify-between px-16 space-x-2 text-gray-500">
       <span v-if="artwork.is_public_domain">CC0 Public Domain Designation</span>
       <span v-else-if="artwork.copyright_notice">{{
         artwork.copyright_notice
