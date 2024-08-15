@@ -70,8 +70,8 @@ importers:
         specifier: ^0.27.4
         version: 0.27.4(@babel/parser@7.25.3)(rollup@4.20.0)(vue@3.4.38(typescript@5.5.4))
       unplugin-vue-router:
-        specifier: ^0.10.5
-        version: 0.10.5(rollup@4.20.0)(vue-router@4.4.3(vue@3.4.38(typescript@5.5.4)))(vue@3.4.38(typescript@5.5.4))
+        specifier: ^0.10.6
+        version: 0.10.6(rollup@4.20.0)(vue-router@4.4.3(vue@3.4.38(typescript@5.5.4)))(vue@3.4.38(typescript@5.5.4))
       vite:
         specifier: ^5.4.1
         version: 5.4.1(@types/node@22.2.0)
@@ -1486,8 +1486,8 @@ packages:
       '@nuxt/kit':
         optional: true
 
-  unplugin-vue-router@0.10.5:
-    resolution: {integrity: sha512-4gIC7WjDLYQUZqmE5vgTZ0imFKBW+JdbDpRCOjotrlJALd5kuK/Cw5Yz3whHoaXszl1SvTKr0xORmnbTsXfXzA==}
+  unplugin-vue-router@0.10.6:
+    resolution: {integrity: sha512-bJ9a/CtFKidhmne8PlTzUptimIFuzHegNODFxWNMOe372jzdRmZEDwvn8ylkI9aDehEI990dlIqZQKN/r0Ki1g==}
     peerDependencies:
       vue-router: ^4.4.0
     peerDependenciesMeta:
@@ -3042,7 +3042,7 @@ snapshots:
       - rollup
       - supports-color
 
-  unplugin-vue-router@0.10.5(rollup@4.20.0)(vue-router@4.4.3(vue@3.4.38(typescript@5.5.4)))(vue@3.4.38(typescript@5.5.4)):
+  unplugin-vue-router@0.10.6(rollup@4.20.0)(vue-router@4.4.3(vue@3.4.38(typescript@5.5.4)))(vue@3.4.38(typescript@5.5.4)):
     dependencies:
       '@babel/types': 7.25.2
       '@rollup/pluginutils': 5.1.0(rollup@4.20.0)
