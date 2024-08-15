@@ -13,7 +13,7 @@ export default defineConfig({
     //
     VueRouter({
       dts: 'src/typed-router.d.ts',
-      experimental: { autoExportsDataLoaders: true },
+      experimental: { autoExportsDataLoaders: ['src/loaders/**/*'] },
     }),
     Vue(),
     VueComponents({

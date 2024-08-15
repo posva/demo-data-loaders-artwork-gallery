@@ -1,6 +1,10 @@
 {
   "name": "demo-data-loaders-artwork-gallery",
   "version": "0.0.0",
+  "packageManager": "pnpm@9.7.1",
+  "engines": {
+    "node": ">=20.10.0"
+  },
   "private": true,
   "type": "module",
   "scripts": {
@@ -16,8 +20,8 @@
     "@vueuse/core": "^10.11.1",
     "daisyui": "^4.12.10",
     "mande": "^2.0.9",
-    "pinia": "^2.2.1",
-    "vue": "^3.4.37",
+    "pinia": "^2.2.2",
+    "vue": "^3.4.38",
     "vue-router": "^4.4.3"
   },
   "devDependencies": {
@@ -33,9 +37,12 @@
     "typescript": "~5.5.4",
     "unplugin-auto-import": "^0.18.2",
     "unplugin-vue-components": "^0.27.4",
-    "unplugin-vue-router": "^0.10.4",
-    "vite": "^5.4.0",
+    "unplugin-vue-router": "^0.10.5",
+    "vite": "^5.4.1",
     "vite-plugin-vue-devtools": "^7.3.8",
     "vue-tsc": "^2.0.21"
+  },
+  "volta": {
+    "node": "20.16.0"
   }
 }
