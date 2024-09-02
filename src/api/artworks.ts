@@ -5,6 +5,8 @@ import type { LocationQueryValueRaw } from 'vue-router'
 
 const artworks = mande('https://api.artic.edu/api/v1/artworks')
 
+artworks.options.headers['AIC-User-Agent'] = 'Eduardo (posva13@gmail.com)'
+
 export const successRate = useSessionStorage<number>('aic-success-rate', 1)
 export const delay = useSessionStorage<number>('aic-delay', 0)
 export const existingDelays = reactive(new Map<symbol, Date>())
