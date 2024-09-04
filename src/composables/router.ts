@@ -30,7 +30,7 @@ declare module 'vue-router' {
   }
 }
 
-export interface UseRouteQueryOptions<T> {
+export interface UseRouteQueryValueOptions<T> {
   /**
    * Parses the raw value from the query into the desired type. By default, it handles natively strings, numbers and booleans, everything else is parsed as JSON.
    *
@@ -87,26 +87,26 @@ export const DEFAULT_OPTIONS = {
   parse: DEFAULT_PARSER,
   serialize: DEFAULT_SERIALIZER,
   deleteIf: <T>(v: T) => v == null,
-} satisfies UseRouteQueryOptions<
+} satisfies UseRouteQueryValueOptions<
   null | undefined | Record<string, unknown> | number | string | unknown[]
 >
 
-export function useRouteQuery<T extends string>(
+export function useRouteQueryValue<T extends string>(
   name: string,
   defaultValue?: T,
   // optional for strings
-  options?: UseRouteQueryOptions<T>,
+  options?: UseRouteQueryValueOptions<T>,
 ): Ref<UnwrapRef<T>>
-export function useRouteQuery<T>(
+export function useRouteQueryValue<T>(
   name: string,
   // required for anything else
   defaultValue: MaybeRefOrGetter<T>,
-  options?: UseRouteQueryOptions<T>,
+  options?: UseRouteQueryValueOptions<T>,
 ): Ref<UnwrapRef<T>>
-export function useRouteQuery<T>(
+export function useRouteQueryValue<T>(
   name: string,
   defaultValue?: MaybeRefOrGetter<T>,
-  options?: UseRouteQueryOptions<T>,
+  options?: UseRouteQueryValueOptions<T>,
 ): Ref<UnwrapRef<T> | undefined> {
   const $route = useRoute()
   const $router = useRouter()
@@ -161,7 +161,7 @@ export function useRouteQuery<T>(
   return queryValue
 }
 
-interface UseRouteQueryOptionsO<T extends Record<string, unknown>> {
+interface UseRouteQueryOptions<T extends Record<string, unknown>> {
   parse?: (rawValue: LocationQuery) => Partial<T>
 
   serialize?: (parsedValue: Partial<T>) => LocationQueryRaw
@@ -216,7 +216,7 @@ export const DEFAULT_OPTIONS_O = {
   parse: parseQueryObject,
   serialize: serializeQueryObject,
   deleteIf: (value, _key) => value === undefined || value === '',
-} satisfies UseRouteQueryOptionsO<Record<string, unknown>>
+} satisfies UseRouteQueryOptions<Record<string, unknown>>
 
 type EmptyFields<T> = {
   [K in keyof T]-?: T[K] | undefined
@@ -247,15 +247,15 @@ type D1 = EmptyFields<OriginalReqWithPartial>
 type OriginalPartialWithReq = Required<OriginalPartial>
 type D2 = EmptyFields<OriginalPartialWithReq> // bugged
 
-export function useRouteQueryO<T extends Record<string, unknown>>(
+export function useRouteQuery<T extends Record<string, unknown>>(
   defaultValue: WithUndefined<T> | (() => WithUndefined<T>),
-  options?: UseRouteQueryOptionsO<NoInfer<T>>,
+  options?: UseRouteQueryOptions<NoInfer<T>>,
 ): Ref<WithUndefined<T>> {
   const $route = useRoute()
   const $router = useRouter()
 
   const { parse, serialize, deleteIf } = {
-    ...(DEFAULT_OPTIONS_O as Required<UseRouteQueryOptionsO<T>>),
+    ...(DEFAULT_OPTIONS_O as Required<UseRouteQueryOptions<T>>),
     ...options,
   }
 
