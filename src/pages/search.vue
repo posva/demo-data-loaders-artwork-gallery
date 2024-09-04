@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { ArtworkColor, ArtworkDetails } from '@/api/artworks'
-import { useRouteQueryValue } from '@/composables/router'
+import { useRouteQueryValue, useRouteQuery } from '@/composables/router'
 import { useRouter } from 'vue-router'
 
 const { data: searchResults, asyncStatus } = useArtworkSearchResults()
 
-const filters = useRouteQueryO<{
+const filters = useRouteQuery<{
   is_public_domain?: boolean
   color: ArtworkColor
   place_ids: string
